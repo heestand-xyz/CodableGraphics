@@ -11,19 +11,41 @@ public class GraphicValueProperty<T: Codable>: GraphicProperty {
     
     public let key: String
     public let name: String
-    public var wrappedValue: T
     
-    public init(wrappedValue: T, key: String, name: String) {
+    public var wrappedValue: T
+    public var defaultValue: T?
+    public var minimumValue: T?
+    public var maximumValue: T?
+    
+    public init(
+        wrappedValue: T,
+        key: String,
+        name: String,
+        `default`: T? = nil,
+        minimum: T? = nil,
+        maximum: T? = nil
+    ) {
         self.key = key
         self.name = name
         self.wrappedValue = wrappedValue
+        defaultValue = `default`
+        minimumValue = minimum
+        maximumValue = maximum
     }
 }
 
 extension GraphicValueProperty {
 
     public func erase() -> AnyGraphicProperty {
-        AnyGraphicProperty(type: type, key: key, name: name, value: wrappedValue) { [weak self] value in
+        AnyGraphicProperty(
+            type: type, 
+            key: key,
+            name: name,
+            value: wrappedValue,
+            defaultValue: defaultValue,
+            minimumValue: minimumValue,
+            maximumValue: maximumValue
+        ) { [weak self] value in
             self?.wrappedValue = value!
         }
     }

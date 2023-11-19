@@ -8,7 +8,9 @@ public struct ColorGraphic: ShapeGraphic {
         .content(.shape(.color))
     }
     
-    @GraphicValueProperty(key: "color", name: String(localized: "Color"))
+    @GraphicValueProperty(
+        key: "color",
+        name: String(localized: "Color"))
     public var color: PixelColor = .white
     
     public var properties: [AnyGraphicProperty] {

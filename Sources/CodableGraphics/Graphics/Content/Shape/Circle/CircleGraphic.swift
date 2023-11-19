@@ -8,7 +8,10 @@ public struct CircleGraphic: ShapeGraphic {
         .content(.shape(.circle))
     }
     
-    @GraphicOptionalProperty(key: "radius", name: String(localized: "Radius"))
+    @GraphicOptionalProperty(
+        key: "radius",
+        name: String(localized: "Radius"),
+        minimum: 0.0)
     public var radius: CGFloat?
     
     public var properties: [AnyGraphicProperty] {
