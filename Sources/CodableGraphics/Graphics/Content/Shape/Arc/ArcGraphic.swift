@@ -1,12 +1,23 @@
 import AsyncGraphics
 import CoreGraphics
 import PixelColor
+import SwiftUI
 
-public class CircleGraphic: ShapeGraphic {
+public class ArcGraphic: ShapeGraphic {
     
     public var type: CodableGraphicType {
-        .content(.shape(.circle))
+        .content(.shape(.arc))
     }
+    
+    @GraphicValueProperty(
+        key: "angle",
+        name: String(localized: "Angle"))
+    public var angle: Angle = .zero
+    
+    @GraphicValueProperty(
+        key: "length",
+        name: String(localized: "Length"))
+    public var length: Angle = .degrees(90)
     
     @GraphicOptionalProperty(
         key: "radius",
@@ -42,6 +53,8 @@ public class CircleGraphic: ShapeGraphic {
     
     public var properties: [AnyGraphicProperty] {
         [
+            _angle.erase(),
+            _length.erase(),
             _radius.erase(),
             _position.erase(),
             _color.erase(),
@@ -56,19 +69,23 @@ public class CircleGraphic: ShapeGraphic {
         options: Graphic.ContentOptions = []
     ) async throws -> Graphic {
         if isStroked {
-            return try await .strokedCircle(
+            return try await .strokedArc(
+                angle: angle,
+                length: length,
                 radius: radius,
                 center: position,
                 lineWidth: lineWidth,
                 color: color,
                 backgroundColor: backgroundColor,
-                resolution: resolution, 
+                resolution: resolution,
                 options: options)
         } else {
-            return try await .circle(
+            return try await .arc(
+                angle: angle,
+                length: length,
                 radius: radius,
                 center: position,
-                color: color, 
+                color: color,
                 backgroundColor: backgroundColor,
                 resolution: resolution,
                 options: options)

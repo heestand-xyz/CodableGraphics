@@ -1,11 +1,17 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "Angle" : {
+
+    },
     "Background Color" : {
 
     },
     "Color" : {
       "comment" : "test"
+    },
+    "Length" : {
+
     },
     "Line Width" : {
 

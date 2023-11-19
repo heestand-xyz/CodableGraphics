@@ -14,7 +14,9 @@ public class ColorGraphic3D: ShapeGraphic3D {
     public var color: PixelColor = .white
     
     public var properties: [AnyGraphicProperty] {
-        [_color.erase()]
+        [
+            _color.erase()
+        ]
     }
 
     public func render(

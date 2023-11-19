@@ -1,11 +1,13 @@
 import Foundation
 import simd
 import PixelColor
+import SwiftUI
 
 public enum GraphicPropertyType {
     case bool
     case int
     case double
+    case angle
     case color
     case size
     case point
@@ -36,6 +38,8 @@ extension GraphicPropertyType {
             return SIMD3<Int>.self
         case .doubleVector:
             return SIMD3<Double>.self
+        case .angle:
+            return Angle.self
 //        case .gradient:
 //            return ...
         }

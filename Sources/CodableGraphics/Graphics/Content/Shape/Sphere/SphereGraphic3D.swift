@@ -41,7 +41,14 @@ public class SphereGraphic3D: ShapeGraphic3D {
     public var surfaceWidth: CGFloat = 1.0
     
     public var properties: [AnyGraphicProperty] {
-        [_radius.erase()]
+        [
+            _radius.erase(),
+            _position.erase(),
+            _color.erase(),
+            _backgroundColor.erase(),
+            _surface.erase(),
+            _surfaceWidth.erase(),
+        ]
     }
 
     public func render(
