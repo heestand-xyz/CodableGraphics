@@ -21,14 +21,13 @@ public class GraphicValueProperty<T: Codable>: GraphicProperty {
         wrappedValue: T,
         key: String,
         name: String,
-        `default`: T? = nil,
         minimum: T? = nil,
         maximum: T? = nil
     ) {
         self.key = key
         self.name = name
         self.wrappedValue = wrappedValue
-        defaultValue = `default`
+        defaultValue = wrappedValue
         minimumValue = minimum
         maximumValue = maximum
     }

@@ -1,10 +1,22 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "Background Color" : {
+
+    },
     "Color" : {
       "comment" : "test"
     },
+    "Line Width" : {
+
+    },
+    "Position" : {
+
+    },
     "Radius" : {
+
+    },
+    "Stroked" : {
 
     }
   },

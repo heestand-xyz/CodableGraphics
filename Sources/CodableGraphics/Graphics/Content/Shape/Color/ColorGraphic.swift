@@ -2,7 +2,7 @@ import AsyncGraphics
 import CoreGraphics
 import PixelColor
 
-public struct ColorGraphic: ShapeGraphic {
+public class ColorGraphic: ShapeGraphic {
     
     public var type: CodableGraphicType {
         .content(.shape(.color))
@@ -17,7 +17,10 @@ public struct ColorGraphic: ShapeGraphic {
         [_color.erase()]
     }
 
-    public func render(at resolution: CGSize) async throws -> Graphic {
+    public func render(
+        at resolution: CGSize,
+        options: AsyncGraphics.Graphic.ContentOptions = []
+    ) async throws -> Graphic {
         try await .color(color, resolution: resolution)
     }
 }

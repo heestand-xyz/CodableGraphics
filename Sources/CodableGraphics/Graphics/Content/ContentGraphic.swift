@@ -3,5 +3,5 @@ import CoreGraphics
 
 public protocol ContentGraphic: CodableGraphic {
     
-    func render(at resolution: CGSize) async throws -> Graphic
+    func render(at resolution: CGSize, options: Graphic.ContentOptions) async throws -> Graphic
 }
