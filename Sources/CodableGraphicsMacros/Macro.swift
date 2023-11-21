@@ -1,16 +1,25 @@
-//import SwiftCompilerPlugin
 import SwiftSyntax
 import SwiftSyntaxBuilder
 import SwiftSyntaxMacros
 
-public struct CodableGraphicMacro: MemberAttributeMacro {
+public struct CodableGraphicMacro: MemberAttributeMacro, MemberMacro {
+    
+    public static func expansion(
+        of node: AttributeSyntax,
+        providingMembersOf declaration: some DeclGroupSyntax,
+        in context: some MacroExpansionContext
+    ) throws -> [DeclSyntax] {
+        [
+            DeclSyntax(stringLiteral: "//// test")
+        ]
+    }
     
      public static func expansion<Declaration, MemberDeclaration, Context>(
-         of node: SwiftSyntax.AttributeSyntax,
+         of node: AttributeSyntax,
          attachedTo declaration: Declaration,
          providingAttributesFor member: MemberDeclaration,
          in context: Context
-     ) throws -> [SwiftSyntax.AttributeSyntax] where Declaration : SwiftSyntax.DeclGroupSyntax, MemberDeclaration : SwiftSyntax.DeclSyntaxProtocol, Context : SwiftSyntaxMacros.MacroExpansionContext {
+     ) throws -> [AttributeSyntax] where Declaration : DeclGroupSyntax, MemberDeclaration : DeclSyntaxProtocol, Context : MacroExpansionContext {
 
          if let variable = member.as(VariableDeclSyntax.self)?.bindings.first,
             let typeAnnotation = variable.typeAnnotation,
@@ -21,7 +30,9 @@ public struct CodableGraphicMacro: MemberAttributeMacro {
              if name == "type" { return [] }
              if name == "properties" { return [] }
              
-             return [SwiftSyntax.AttributeSyntax.init(stringLiteral: "@Graphic\(isOptional ? "Optional" : "Value")Property(key: \"\(name)\", name: String(localized: \"\(name)\"))")]
+             return [
+                AttributeSyntax(stringLiteral: "@Graphic\(isOptional ? "Optional" : "Value")Property(key: \"\(name)\", name: String(localized: \"\(name)\"))")
+             ]
          }
          return []
     }

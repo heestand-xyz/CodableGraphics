@@ -3,7 +3,7 @@ import simd
 import PixelColor
 
 public protocol GraphicProperty {
-    var valueType: Codable.Type { get }
+    var valueType: GraphicValue.Type { get }
     var key: String { get }
     var name: String { get }
     func erase() -> AnyGraphicProperty
@@ -11,7 +11,7 @@ public protocol GraphicProperty {
 
 extension GraphicProperty {
     
-    public var type: GraphicPropertyType {
+    public var type: GraphicValueType {
         switch valueType {
         case is Bool.Type:
             return .bool

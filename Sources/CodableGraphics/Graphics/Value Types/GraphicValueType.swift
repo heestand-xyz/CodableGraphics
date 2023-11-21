@@ -1,24 +1,25 @@
 import Foundation
-import simd
-import PixelColor
 import SwiftUI
+import simd
+import AsyncGraphics
+import PixelColor
 
-public enum GraphicPropertyType {
+public enum GraphicValueType {
     case bool
     case int
     case double
     case angle
-    case color
     case size
     case point
     case rect
+    case color
     case intVector
     case doubleVector
-//    case gradient
+    case gradient
 }
 
-extension GraphicPropertyType {
-    var rawType: Codable.Type {
+extension GraphicValueType {
+    var graphicValueType: GraphicValue.Type {
         switch self {
         case .bool:
             return Bool.self
@@ -26,22 +27,22 @@ extension GraphicPropertyType {
             return Int.self
         case .double:
             return Double.self
-        case .color:
-            return PixelColor.self
+        case .angle:
+            return Angle.self
         case .size:
             return CGSize.self
         case .point:
             return CGPoint.self
         case .rect:
             return CGRect.self
+        case .color:
+            return PixelColor.self
         case .intVector:
             return SIMD3<Int>.self
         case .doubleVector:
             return SIMD3<Double>.self
-        case .angle:
-            return Angle.self
-//        case .gradient:
-//            return ...
+        case .gradient:
+            return [Graphic.GradientStop].self
         }
     }
 }

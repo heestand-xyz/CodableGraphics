@@ -1,9 +1,9 @@
 import Foundation
 
 @propertyWrapper
-public class GraphicOptionalProperty<T: Codable>: GraphicProperty {
+public class GraphicOptionalProperty<T: GraphicValue>: GraphicProperty {
     
-    public var valueType: Codable.Type {
+    public var valueType: GraphicValue.Type {
         Swift.type(of: wrappedValue)
     }
     
@@ -16,9 +16,7 @@ public class GraphicOptionalProperty<T: Codable>: GraphicProperty {
     
     public init(
         key: String,
-        name: String,
-        minimum: T? = nil,
-        maximum: T? = nil
+        name: String
     ) {
         self.key = key
         self.name = name

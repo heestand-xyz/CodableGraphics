@@ -5,7 +5,7 @@ public class AnyGraphicProperty {
     
     static let nullKey: String = "null"
     
-    public let type: GraphicPropertyType
+    public let type: GraphicValueType
     
     public let key: String
     public let name: String
@@ -17,7 +17,7 @@ public class AnyGraphicProperty {
     
     private var updateValue: (String) -> ()
     
-    init<T: Codable>(type: GraphicPropertyType,
+    init<T: GraphicValue>(type: GraphicValueType,
                      key: String,
                      name: String,
                      value: T?,
@@ -44,30 +44,30 @@ public class AnyGraphicProperty {
 
 extension AnyGraphicProperty {
     
-    func get<T: Codable>() -> T? {
+    func get<T: GraphicValue>() -> T? {
         Self.decode(value)
     }
     
-    func getDefault<T: Codable>() -> T? {
+    func getDefault<T: GraphicValue>() -> T? {
         Self.decode(defaultValue)
     }
     
-    func getMinium<T: Codable>() -> T? {
+    func getMinium<T: GraphicValue>() -> T? {
         Self.decode(minimumValue)
     }
     
-    func getMaximum<T: Codable>() -> T? {
+    func getMaximum<T: GraphicValue>() -> T? {
         Self.decode(maximumValue)
     }
     
-    func set<T: Codable>(value: T?) {
+    func set<T: GraphicValue>(value: T?) {
         updateValue(Self.encode(value))
     }
 }
 
 extension AnyGraphicProperty {
     
-    static func encode<T: Codable>(_ value: T?) -> String {
+    static func encode<T: GraphicValue>(_ value: T?) -> String {
         if let value {
             do {
                 let encoder = JSONEncoder()
@@ -81,7 +81,7 @@ extension AnyGraphicProperty {
         }
     }
     
-    static func decode<T: Codable>(_ string: String) -> T? {
+    static func decode<T: GraphicValue>(_ string: String) -> T? {
         if string == nullKey {
             return nil
         }

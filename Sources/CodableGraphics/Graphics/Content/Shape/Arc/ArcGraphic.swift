@@ -15,7 +15,11 @@ public class ArcGraphic: ShapeGraphic {
     public var radius: CGFloat? // minimum: 0.0
 
     public var angle: Angle = .zero
-    public var length: Angle = .degrees(90) // minimum: .zero. maximum: .degrees(360)    
+    
+    public var length: GraphicMetadata<Angle> = GraphicMetadata(
+        value: .degrees(90),
+        minimum: .zero,
+        maximum: .fixed(.degrees(360)))
     
     public var color: PixelColor = .white
     public var backgroundColor: PixelColor = .clear
@@ -43,7 +47,7 @@ public class ArcGraphic: ShapeGraphic {
         if isStroked {
             return try await .strokedArc(
                 angle: angle,
-                length: length,
+                length: length.value,
                 radius: radius,
                 center: position,
                 lineWidth: lineWidth,
@@ -54,7 +58,7 @@ public class ArcGraphic: ShapeGraphic {
         } else {
             return try await .arc(
                 angle: angle,
-                length: length,
+                length: length.value,
                 radius: radius,
                 center: position,
                 color: color,

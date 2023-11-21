@@ -3,33 +3,23 @@ import simd
 import PixelColor
 
 @propertyWrapper
-public class GraphicValueProperty<T: Codable>: GraphicProperty {
+public class GraphicValueProperty<T: GraphicValue>: GraphicProperty {
     
-    public var valueType: Codable.Type {
-        Swift.type(of: wrappedValue)
-    }
+    public var valueType: GraphicValue.Type { T.self }
     
     public let key: String
     public let name: String
     
-    public var wrappedValue: T
-    public var defaultValue: T?
-    public var minimumValue: T?
-    public var maximumValue: T?
+    public var wrappedValue: GraphicMetadata<T>
     
     public init(
-        wrappedValue: T,
+        wrappedValue: GraphicMetadata<T>,
         key: String,
-        name: String,
-        minimum: T? = nil,
-        maximum: T? = nil
+        name: String
     ) {
         self.key = key
         self.name = name
         self.wrappedValue = wrappedValue
-        defaultValue = wrappedValue
-        minimumValue = minimum
-        maximumValue = maximum
     }
 }
 
@@ -37,15 +27,15 @@ extension GraphicValueProperty {
 
     public func erase() -> AnyGraphicProperty {
         AnyGraphicProperty(
-            type: type, 
+            type: type,
             key: key,
             name: name,
-            value: wrappedValue,
-            defaultValue: defaultValue,
-            minimumValue: minimumValue,
-            maximumValue: maximumValue
+            value: wrappedValue.value,
+            defaultValue: wrappedValue.defaultValue,
+            minimumValue: wrappedValue.minimumValue,
+            maximumValue: wrappedValue.maximumValue
         ) { [weak self] value in
-            self?.wrappedValue = value!
+            self?.wrappedValue.value = value!
         }
     }
 }
