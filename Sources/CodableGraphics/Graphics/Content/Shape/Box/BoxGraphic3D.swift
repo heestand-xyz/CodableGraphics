@@ -22,17 +22,6 @@ public class BoxGraphic3D: ShapeGraphic3D {
     public var surfaceWidth: GraphicMetadata<CGFloat> = .init(value: .fixed(1.0),
                                                               maximum: .fixed(10.0))
     
-    public var properties: [AnyGraphicProperty] {
-        [
-            _size.erase(),
-            _position.erase(),
-            _foregroundColor.erase(),
-            _backgroundColor.erase(),
-            _surface.erase(),
-            _surfaceWidth.erase(),
-        ]
-    }
-
     public func render(
         at resolution: SIMD3<Int>,
         options: Graphic3D.ContentOptions = []

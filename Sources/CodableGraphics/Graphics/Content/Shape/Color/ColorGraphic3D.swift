@@ -11,12 +11,6 @@ public class ColorGraphic3D: ShapeGraphic3D {
     
     public var color: GraphicMetadata<PixelColor> = .init(value: .fixed(.white))
     
-    public var properties: [AnyGraphicProperty] {
-        [
-            _color.erase()
-        ]
-    }
-
     public func render(
         at resolution: SIMD3<Int>,
         options: AsyncGraphics.Graphic3D.ContentOptions = []

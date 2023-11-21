@@ -11,12 +11,6 @@ public class ColorGraphic: ShapeGraphic {
     
     public var color: GraphicMetadata<PixelColor> = .init(value: .fixed(.white))
     
-    public var properties: [AnyGraphicProperty] {
-        [
-            _color.erase()
-        ]
-    }
-
     public func render(
         at resolution: CGSize,
         options: AsyncGraphics.Graphic.ContentOptions = []

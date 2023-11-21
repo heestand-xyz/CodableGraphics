@@ -27,19 +27,6 @@ public class ArcGraphic: ShapeGraphic {
     public var lineWidth: GraphicMetadata<CGFloat> = .init(value: .fixed(1.0),
                                                            maximum: .fixed(10.0))
     
-    public var properties: [AnyGraphicProperty] {
-        [
-            _angle.erase(),
-            _length.erase(),
-            _radius.erase(),
-            _position.erase(),
-            _foregroundColor.erase(),
-            _backgroundColor.erase(),
-            _isStroked.erase(),
-            _lineWidth.erase(),
-        ]
-    }
-
     public func render(
         at resolution: CGSize,
         options: Graphic.ContentOptions = []
