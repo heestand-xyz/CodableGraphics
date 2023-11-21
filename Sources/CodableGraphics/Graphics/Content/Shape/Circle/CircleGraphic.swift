@@ -9,15 +9,17 @@ public class CircleGraphic: ShapeGraphic {
         .content(.shape(.circle))
     }
     
-    public var position: CGPoint?
+    public var position: GraphicMetadata<CGPoint> = .init()
 
-    public var radius: CGFloat? // minimum: 0.0
+    public var radius: GraphicMetadata<CGFloat> = .init(value: .resolutionMinimum(fraction: 0.5),
+                                                        maximum: .resolutionMaximum(fraction: 0.5))
+
+    public var color: GraphicMetadata<PixelColor> = .init(value: .fixed(.white))
+    public var backgroundColor: GraphicMetadata<PixelColor> = .init(value: .fixed(.clear))
     
-    public var color: PixelColor = .white
-    public var backgroundColor: PixelColor = .clear
-    
-    public var isStroked: Bool = false
-    public var lineWidth: CGFloat = 1.0 // minimum: 0.0
+    public var isStroked: GraphicMetadata<Bool> = .init(value: .fixed(false))
+    public var lineWidth: GraphicMetadata<CGFloat> = .init(value: .fixed(1.0),
+                                                           maximum: .fixed(10.0))
     
     public var properties: [AnyGraphicProperty] {
         [
@@ -34,21 +36,21 @@ public class CircleGraphic: ShapeGraphic {
         at resolution: CGSize,
         options: Graphic.ContentOptions = []
     ) async throws -> Graphic {
-        if isStroked {
+        if isStroked.value.at(resolution: resolution) {
             return try await .strokedCircle(
-                radius: radius,
-                center: position,
-                lineWidth: lineWidth,
-                color: color,
-                backgroundColor: backgroundColor,
-                resolution: resolution, 
+                radius: radius.value.at(resolution: resolution),
+                center: position.value.at(resolution: resolution),
+                lineWidth: lineWidth.value.at(resolution: resolution),
+                color: color.value.at(resolution: resolution),
+                backgroundColor: backgroundColor.value.at(resolution: resolution),
+                resolution: resolution,
                 options: options)
         } else {
             return try await .circle(
-                radius: radius,
-                center: position,
-                color: color, 
-                backgroundColor: backgroundColor,
+                radius: radius.value.at(resolution: resolution),
+                center: position.value.at(resolution: resolution),
+                color: color.value.at(resolution: resolution),
+                backgroundColor: backgroundColor.value.at(resolution: resolution),
                 resolution: resolution,
                 options: options)
         }

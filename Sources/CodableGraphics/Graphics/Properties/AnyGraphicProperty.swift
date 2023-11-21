@@ -18,13 +18,13 @@ public class AnyGraphicProperty {
     private var updateValue: (String) -> ()
     
     init<T: GraphicValue>(type: GraphicValueType,
-                     key: String,
-                     name: String,
-                     value: T?,
-                     defaultValue: T?,
-                     minimumValue: T?,
-                     maximumValue: T?,
-                     update: @escaping (T?) -> ()) {
+                          key: String,
+                          name: String,
+                          value: GraphicMetadataValue<T>?,
+                          defaultValue: GraphicMetadataValue<T>?,
+                          minimumValue: GraphicMetadataValue<T>?,
+                          maximumValue: GraphicMetadataValue<T>?,
+                          update: @escaping (GraphicMetadataValue<T>?) -> ()) {
         
         self.type = type
         
@@ -44,30 +44,30 @@ public class AnyGraphicProperty {
 
 extension AnyGraphicProperty {
     
-    func get<T: GraphicValue>() -> T? {
+    func get<T: GraphicValue>() -> GraphicMetadataValue<T>? {
         Self.decode(value)
     }
     
-    func getDefault<T: GraphicValue>() -> T? {
+    func getDefault<T: GraphicValue>() -> GraphicMetadataValue<T>? {
         Self.decode(defaultValue)
     }
     
-    func getMinium<T: GraphicValue>() -> T? {
+    func getMinium<T: GraphicValue>() -> GraphicMetadataValue<T>? {
         Self.decode(minimumValue)
     }
     
-    func getMaximum<T: GraphicValue>() -> T? {
+    func getMaximum<T: GraphicValue>() -> GraphicMetadataValue<T>? {
         Self.decode(maximumValue)
     }
     
-    func set<T: GraphicValue>(value: T?) {
+    func set<T: GraphicValue>(value: GraphicMetadataValue<T>?) {
         updateValue(Self.encode(value))
     }
 }
 
 extension AnyGraphicProperty {
     
-    static func encode<T: GraphicValue>(_ value: T?) -> String {
+    static func encode<T: GraphicValue>(_ value: GraphicMetadataValue<T>?) -> String {
         if let value {
             do {
                 let encoder = JSONEncoder()
@@ -81,14 +81,14 @@ extension AnyGraphicProperty {
         }
     }
     
-    static func decode<T: GraphicValue>(_ string: String) -> T? {
+    static func decode<T: GraphicValue>(_ string: String) -> GraphicMetadataValue<T>? {
         if string == nullKey {
             return nil
         }
         do {
             let decoder = JSONDecoder()
             let data: Data = string.data(using: .utf8)!
-            return try decoder.decode(T.self, from: data)
+            return try decoder.decode(GraphicMetadataValue<T>.self, from: data)
         } catch {
             fatalError("CodableGraphics - Decode in Property Failed: \(error.localizedDescription)")
         }

@@ -9,7 +9,7 @@ public class ColorGraphic3D: ShapeGraphic3D {
         .content(.shape(.color))
     }
     
-    public var color: PixelColor = .white
+    public var color: GraphicMetadata<PixelColor> = .init(value: .fixed(.white))
     
     public var properties: [AnyGraphicProperty] {
         [
@@ -22,7 +22,7 @@ public class ColorGraphic3D: ShapeGraphic3D {
         options: AsyncGraphics.Graphic3D.ContentOptions = []
     ) async throws -> Graphic3D {
         try await .color(
-            color,
+            color.value.at(resolution: resolution),
             resolution: resolution,
             options: options)
     }

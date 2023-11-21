@@ -31,7 +31,7 @@ public struct CodableGraphicMacro: MemberAttributeMacro, MemberMacro {
              if name == "properties" { return [] }
              
              return [
-                AttributeSyntax(stringLiteral: "@Graphic\(isOptional ? "Optional" : "Value")Property(key: \"\(name)\", name: String(localized: \"\(name)\"))")
+                AttributeSyntax(stringLiteral: "@GraphicProperty(key: \"\(name)\", name: String(localized: \"graphic.property.\(name)\"))")
              ]
          }
          return []

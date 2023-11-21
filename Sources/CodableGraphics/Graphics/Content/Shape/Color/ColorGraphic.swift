@@ -9,7 +9,7 @@ public class ColorGraphic: ShapeGraphic {
         .content(.shape(.color))
     }
     
-    public var color: PixelColor = .white
+    public var color: GraphicMetadata<PixelColor> = .init(value: .fixed(.white))
     
     public var properties: [AnyGraphicProperty] {
         [
@@ -22,7 +22,7 @@ public class ColorGraphic: ShapeGraphic {
         options: AsyncGraphics.Graphic.ContentOptions = []
     ) async throws -> Graphic {
         try await .color(
-            color,
+            color.value.at(resolution: resolution),
             resolution: resolution,
             options: options)
     }

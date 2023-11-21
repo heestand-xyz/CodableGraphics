@@ -1,18 +1,48 @@
 import Foundation
 import simd
+import AsyncGraphics
 import PixelColor
 
-public protocol GraphicProperty {
-    var valueType: GraphicValue.Type { get }
-    var key: String { get }
-    var name: String { get }
-    func erase() -> AnyGraphicProperty
+@propertyWrapper
+public class GraphicProperty<T: GraphicValue> {
+    
+    public let key: String
+    public let name: String
+    
+    public var wrappedValue: GraphicMetadata<T>
+    
+    public init(
+        wrappedValue: GraphicMetadata<T>,
+        key: String,
+        name: String
+    ) {
+        self.key = key
+        self.name = name
+        self.wrappedValue = wrappedValue
+    }
+}
+
+extension GraphicProperty {
+
+    public func erase() -> AnyGraphicProperty {
+        AnyGraphicProperty(
+            type: type,
+            key: key,
+            name: name,
+            value: wrappedValue.value,
+            defaultValue: wrappedValue.defaultValue,
+            minimumValue: wrappedValue.minimumValue,
+            maximumValue: wrappedValue.maximumValue
+        ) { [weak self] value in
+            self?.wrappedValue.value = value!
+        }
+    }
 }
 
 extension GraphicProperty {
     
     public var type: GraphicValueType {
-        switch valueType {
+        switch T.self {
         case is Bool.Type:
             return .bool
         case is Int.Type:
@@ -31,6 +61,8 @@ extension GraphicProperty {
             return .intVector
         case is SIMD3<Double>.Type:
             return .doubleVector
+        case is [Graphic.GradientStop].Type:
+            return .gradient
         default:
             fatalError("Unsupported Graphic Property Type")
         }

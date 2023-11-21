@@ -2,6 +2,7 @@
   "sourceLanguage" : "en",
   "strings" : {
     "angle" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -12,6 +13,7 @@
       }
     },
     "backgroundColor" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -22,6 +24,7 @@
       }
     },
     "color" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -32,6 +35,7 @@
       }
     },
     "cornerRadius" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -41,7 +45,44 @@
         }
       }
     },
+    "graphic.property.angle" : {
+
+    },
+    "graphic.property.backgroundColor" : {
+
+    },
+    "graphic.property.color" : {
+
+    },
+    "graphic.property.cornerRadius" : {
+
+    },
+    "graphic.property.isStroked" : {
+
+    },
+    "graphic.property.length" : {
+
+    },
+    "graphic.property.lineWidth" : {
+
+    },
+    "graphic.property.position" : {
+
+    },
+    "graphic.property.radius" : {
+
+    },
+    "graphic.property.size" : {
+
+    },
+    "graphic.property.surface" : {
+
+    },
+    "graphic.property.surfaceWidth" : {
+
+    },
     "isStroked" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -52,6 +93,7 @@
       }
     },
     "length" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -62,6 +104,7 @@
       }
     },
     "lineWidth" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -72,6 +115,7 @@
       }
     },
     "position" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -82,6 +126,7 @@
       }
     },
     "radius" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -92,6 +137,7 @@
       }
     },
     "size" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -102,6 +148,7 @@
       }
     },
     "surface" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -112,6 +159,7 @@
       }
     },
     "surfaceWidth" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {

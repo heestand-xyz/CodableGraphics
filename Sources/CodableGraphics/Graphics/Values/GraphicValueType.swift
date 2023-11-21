@@ -19,7 +19,7 @@ public enum GraphicValueType {
 }
 
 extension GraphicValueType {
-    var graphicValueType: GraphicValue.Type {
+    var graphicValueType: any GraphicValue.Type {
         switch self {
         case .bool:
             return Bool.self
