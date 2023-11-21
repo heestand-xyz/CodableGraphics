@@ -20,7 +20,7 @@ public class ArcGraphic: ShapeGraphic {
                                                       minimum: .fixed(.zero),
                                                       maximum: .fixed(.degrees(360)))
     
-    public var color: GraphicMetadata<PixelColor> = .init(value: .fixed(.white))
+    public var foregroundColor: GraphicMetadata<PixelColor> = .init(value: .fixed(.white))
     public var backgroundColor: GraphicMetadata<PixelColor> = .init(value: .fixed(.clear))
     
     public var isStroked: GraphicMetadata<Bool> = .init(value: .fixed(false))
@@ -33,7 +33,7 @@ public class ArcGraphic: ShapeGraphic {
             _length.erase(),
             _radius.erase(),
             _position.erase(),
-            _color.erase(),
+            _foregroundColor.erase(),
             _backgroundColor.erase(),
             _isStroked.erase(),
             _lineWidth.erase(),
@@ -51,7 +51,7 @@ public class ArcGraphic: ShapeGraphic {
                 radius: radius.value.at(resolution: resolution),
                 center: position.value.at(resolution: resolution),
                 lineWidth: lineWidth.value.at(resolution: resolution),
-                color: color.value.at(resolution: resolution),
+                color: foregroundColor.value.at(resolution: resolution),
                 backgroundColor: backgroundColor.value.at(resolution: resolution),
                 resolution: resolution,
                 options: options)
@@ -61,7 +61,7 @@ public class ArcGraphic: ShapeGraphic {
                 length: length.value.at(resolution: resolution),
                 radius: radius.value.at(resolution: resolution),
                 center: position.value.at(resolution: resolution),
-                color: color.value.at(resolution: resolution),
+                color: foregroundColor.value.at(resolution: resolution),
                 backgroundColor: backgroundColor.value.at(resolution: resolution),
                 resolution: resolution,
                 options: options)

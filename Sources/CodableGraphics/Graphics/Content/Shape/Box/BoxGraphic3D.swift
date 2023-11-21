@@ -15,7 +15,7 @@ public class BoxGraphic3D: ShapeGraphic3D {
     public var cornerRadius: GraphicMetadata<Double> = .init(value: .fixed(0.0),
                                                              maximum: .resolutionMinimum(fraction: 0.5))
     
-    public var color: GraphicMetadata<PixelColor> = .init(value: .fixed(.white))
+    public var foregroundColor: GraphicMetadata<PixelColor> = .init(value: .fixed(.white))
     public var backgroundColor: GraphicMetadata<PixelColor> = .init(value: .fixed(.clear))
     
     public var surface: GraphicMetadata<Bool> = .init(value: .fixed(false))
@@ -26,7 +26,7 @@ public class BoxGraphic3D: ShapeGraphic3D {
         [
             _size.erase(),
             _position.erase(),
-            _color.erase(),
+            _foregroundColor.erase(),
             _backgroundColor.erase(),
             _surface.erase(),
             _surfaceWidth.erase(),
@@ -43,7 +43,7 @@ public class BoxGraphic3D: ShapeGraphic3D {
                 center: position.value.at(resolution: resolution),
                 cornerRadius: cornerRadius.value.at(resolution: resolution),
                 surfaceWidth: surfaceWidth.value.at(resolution: resolution),
-                color: color.value.at(resolution: resolution),
+                color: foregroundColor.value.at(resolution: resolution),
                 backgroundColor: backgroundColor.value.at(resolution: resolution),
                 resolution: resolution,
                 options: options)
@@ -52,7 +52,7 @@ public class BoxGraphic3D: ShapeGraphic3D {
                 size: size.value.at(resolution: resolution),
                 center: position.value.at(resolution: resolution),
                 cornerRadius: cornerRadius.value.at(resolution: resolution),
-                color: color.value.at(resolution: resolution),
+                color: foregroundColor.value.at(resolution: resolution),
                 backgroundColor: backgroundColor.value.at(resolution: resolution),
                 resolution: resolution,
                 options: options)

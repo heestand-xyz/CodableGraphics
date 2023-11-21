@@ -1,8 +1,7 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "angle" : {
-      "extractionState" : "stale",
+    "graphic.property.angle" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -12,8 +11,7 @@
         }
       }
     },
-    "backgroundColor" : {
-      "extractionState" : "stale",
+    "graphic.property.backgroundColor" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -23,8 +21,7 @@
         }
       }
     },
-    "color" : {
-      "extractionState" : "stale",
+    "graphic.property.color" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -34,8 +31,7 @@
         }
       }
     },
-    "cornerRadius" : {
-      "extractionState" : "stale",
+    "graphic.property.cornerRadius" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -45,44 +41,17 @@
         }
       }
     },
-    "graphic.property.angle" : {
-
-    },
-    "graphic.property.backgroundColor" : {
-
-    },
-    "graphic.property.color" : {
-
-    },
-    "graphic.property.cornerRadius" : {
-
+    "graphic.property.foregroundColor" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Foreground Color"
+          }
+        }
+      }
     },
     "graphic.property.isStroked" : {
-
-    },
-    "graphic.property.length" : {
-
-    },
-    "graphic.property.lineWidth" : {
-
-    },
-    "graphic.property.position" : {
-
-    },
-    "graphic.property.radius" : {
-
-    },
-    "graphic.property.size" : {
-
-    },
-    "graphic.property.surface" : {
-
-    },
-    "graphic.property.surfaceWidth" : {
-
-    },
-    "isStroked" : {
-      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -92,8 +61,7 @@
         }
       }
     },
-    "length" : {
-      "extractionState" : "stale",
+    "graphic.property.length" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -103,8 +71,7 @@
         }
       }
     },
-    "lineWidth" : {
-      "extractionState" : "stale",
+    "graphic.property.lineWidth" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -114,8 +81,7 @@
         }
       }
     },
-    "position" : {
-      "extractionState" : "stale",
+    "graphic.property.position" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -125,8 +91,7 @@
         }
       }
     },
-    "radius" : {
-      "extractionState" : "stale",
+    "graphic.property.radius" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -136,8 +101,7 @@
         }
       }
     },
-    "size" : {
-      "extractionState" : "stale",
+    "graphic.property.size" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -147,8 +111,7 @@
         }
       }
     },
-    "surface" : {
-      "extractionState" : "stale",
+    "graphic.property.surface" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -158,8 +121,7 @@
         }
       }
     },
-    "surfaceWidth" : {
-      "extractionState" : "stale",
+    "graphic.property.surfaceWidth" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {

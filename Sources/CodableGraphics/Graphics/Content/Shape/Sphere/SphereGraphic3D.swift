@@ -14,7 +14,7 @@ public class SphereGraphic3D: ShapeGraphic3D {
     public var radius: GraphicMetadata<CGFloat> = .init(value: .resolutionMinimum(fraction: 0.5),
                                                         maximum: .resolutionMaximum(fraction: 0.5))
 
-    public var color: GraphicMetadata<PixelColor> = .init(value: .fixed(.white))
+    public var foregroundColor: GraphicMetadata<PixelColor> = .init(value: .fixed(.white))
     public var backgroundColor: GraphicMetadata<PixelColor> = .init(value: .fixed(.clear))
     
     public var surface: GraphicMetadata<Bool> = .init(value: .fixed(false))
@@ -25,7 +25,7 @@ public class SphereGraphic3D: ShapeGraphic3D {
         [
             _radius.erase(),
             _position.erase(),
-            _color.erase(),
+            _foregroundColor.erase(),
             _backgroundColor.erase(),
             _surface.erase(),
             _surfaceWidth.erase(),
@@ -41,7 +41,7 @@ public class SphereGraphic3D: ShapeGraphic3D {
                 radius: radius.value.at(resolution: resolution),
                 center: position.value.at(resolution: resolution),
                 surfaceWidth: surfaceWidth.value.at(resolution: resolution),
-                color: color.value.at(resolution: resolution),
+                color: foregroundColor.value.at(resolution: resolution),
                 backgroundColor: backgroundColor.value.at(resolution: resolution),
                 resolution: resolution,
                 options: options)
@@ -49,7 +49,7 @@ public class SphereGraphic3D: ShapeGraphic3D {
             return try await .sphere(
                 radius: radius.value.at(resolution: resolution),
                 center: position.value.at(resolution: resolution),
-                color: color.value.at(resolution: resolution),
+                color: foregroundColor.value.at(resolution: resolution),
                 backgroundColor: backgroundColor.value.at(resolution: resolution),
                 resolution: resolution,
                 options: options)
