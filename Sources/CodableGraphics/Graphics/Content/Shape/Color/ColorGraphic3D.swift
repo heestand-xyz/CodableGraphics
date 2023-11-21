@@ -2,15 +2,13 @@ import AsyncGraphics
 import CoreGraphics
 import PixelColor
 
+@CodableGraphicMacro
 public class ColorGraphic3D: ShapeGraphic3D {
     
     public var type: CodableGraphic3DType {
         .content(.shape(.color))
     }
     
-    @GraphicValueProperty(
-        key: "color",
-        name: String(localized: "Color"))
     public var color: PixelColor = .white
     
     public var properties: [AnyGraphicProperty] {

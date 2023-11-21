@@ -3,53 +3,25 @@ import CoreGraphics
 import PixelColor
 import SwiftUI
 
+@CodableGraphicMacro
 public class ArcGraphic: ShapeGraphic {
     
     public var type: CodableGraphicType {
         .content(.shape(.arc))
     }
     
-    @GraphicValueProperty(
-        key: "angle",
-        name: String(localized: "Angle"))
-    public var angle: Angle = .zero
-    
-    @GraphicValueProperty(
-        key: "length",
-        name: String(localized: "Length"))
-    public var length: Angle = .degrees(90)
-    
-    @GraphicOptionalProperty(
-        key: "radius",
-        name: String(localized: "Radius"),
-        minimum: 0.0)
-    public var radius: CGFloat?
-    
-    @GraphicOptionalProperty(
-        key: "position",
-        name: String(localized: "Position"))
     public var position: CGPoint?
+
+    public var radius: CGFloat? // minimum: 0.0
+
+    public var angle: Angle = .zero
+    public var length: Angle = .degrees(90) // minimum: .zero. maximum: .degrees(360)    
     
-    @GraphicValueProperty(
-        key: "color",
-        name: String(localized: "Color"))
     public var color: PixelColor = .white
-    
-    @GraphicValueProperty(
-        key: "backgroundColor",
-        name: String(localized: "Background Color"))
     public var backgroundColor: PixelColor = .clear
     
-    @GraphicValueProperty(
-        key: "isStroked",
-        name: String(localized: "Stroked"))
     public var isStroked: Bool = false
-    
-    @GraphicValueProperty(
-        key: "lineWidth",
-        name: String(localized: "Line Width"),
-        minimum: 0.0)
-    public var lineWidth: CGFloat = 1.0
+    public var lineWidth: CGFloat = 1.0 // minimum: 0.0
     
     public var properties: [AnyGraphicProperty] {
         [

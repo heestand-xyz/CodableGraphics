@@ -3,16 +3,17 @@ import CoreGraphics
 import PixelColor
 
 @CodableGraphicMacro
-public class SphereGraphic3D: ShapeGraphic3D {
+public class BoxGraphic3D: ShapeGraphic3D {
     
     public var type: CodableGraphic3DType {
-        .content(.shape(.sphere))
+        .content(.shape(.box))
     }
     
+    public var size: SIMD3<Double>?
     public var position: SIMD3<Double>?
     
-    public var radius: Double? // minimum: 0.0
-
+    public var cornerRadius: Double = 0.0 // minimum: 0.0
+    
     public var color: PixelColor = .white
     public var backgroundColor: PixelColor = .clear
     
@@ -21,7 +22,7 @@ public class SphereGraphic3D: ShapeGraphic3D {
     
     public var properties: [AnyGraphicProperty] {
         [
-            _radius.erase(),
+            _size.erase(),
             _position.erase(),
             _color.erase(),
             _backgroundColor.erase(),
@@ -35,18 +36,20 @@ public class SphereGraphic3D: ShapeGraphic3D {
         options: Graphic3D.ContentOptions = []
     ) async throws -> Graphic3D {
         if surface {
-            return try await .surfaceSphere(
-                radius: radius,
+            return try await .surfaceBox(
+                size: size,
                 center: position,
+                cornerRadius: cornerRadius,
                 surfaceWidth: surfaceWidth,
                 color: color,
                 backgroundColor: backgroundColor,
                 resolution: resolution,
                 options: options)
         } else {
-            return try await .sphere(
-                radius: radius,
+            return try await .box(
+                size: size,
                 center: position,
+                cornerRadius: cornerRadius,
                 color: color,
                 backgroundColor: backgroundColor,
                 resolution: resolution,

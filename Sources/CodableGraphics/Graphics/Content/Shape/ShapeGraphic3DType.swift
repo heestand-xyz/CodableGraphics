@@ -5,6 +5,7 @@ public enum ShapeGraphic3DType: String, Codable, Equatable, CaseIterable {
     
     case color
     case sphere
+    case box
 }
 
 extension ShapeGraphic3DType: Identifiable {
@@ -22,6 +23,8 @@ extension ShapeGraphic3DType {
             ColorGraphic3D()
         case .sphere:
             SphereGraphic3D()
+        case .box:
+            BoxGraphic3D()
         }
     }
 }

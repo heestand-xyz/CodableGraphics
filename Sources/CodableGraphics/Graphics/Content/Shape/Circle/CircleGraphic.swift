@@ -2,43 +2,22 @@ import AsyncGraphics
 import CoreGraphics
 import PixelColor
 
+@CodableGraphicMacro
 public class CircleGraphic: ShapeGraphic {
     
     public var type: CodableGraphicType {
         .content(.shape(.circle))
     }
     
-    @GraphicOptionalProperty(
-        key: "radius",
-        name: String(localized: "Radius"),
-        minimum: 0.0)
-    public var radius: CGFloat?
-    
-    @GraphicOptionalProperty(
-        key: "position",
-        name: String(localized: "Position"))
     public var position: CGPoint?
+
+    public var radius: CGFloat? // minimum: 0.0
     
-    @GraphicValueProperty(
-        key: "color",
-        name: String(localized: "Color"))
     public var color: PixelColor = .white
-    
-    @GraphicValueProperty(
-        key: "backgroundColor",
-        name: String(localized: "Background Color"))
     public var backgroundColor: PixelColor = .clear
     
-    @GraphicValueProperty(
-        key: "isStroked",
-        name: String(localized: "Stroked"))
     public var isStroked: Bool = false
-    
-    @GraphicValueProperty(
-        key: "lineWidth",
-        name: String(localized: "Line Width"),
-        minimum: 0.0)
-    public var lineWidth: CGFloat = 1.0
+    public var lineWidth: CGFloat = 1.0 // minimum: 0.0
     
     public var properties: [AnyGraphicProperty] {
         [
