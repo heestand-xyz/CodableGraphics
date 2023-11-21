@@ -6,6 +6,7 @@ public enum ShapeGraphicType: String, Codable, Equatable, CaseIterable {
     case color
     case circle
     case arc
+    case line
 }
 
 extension ShapeGraphicType: Identifiable {
@@ -25,6 +26,8 @@ extension ShapeGraphicType {
             CircleGraphic()
         case .arc:
             ArcGraphic()
+        case .line:
+            LineGraphic()
         }
     }
 }

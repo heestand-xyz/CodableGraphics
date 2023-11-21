@@ -89,7 +89,7 @@ extension Angle: GraphicValue {
     
     public static var zero: Self { .degrees(0) }
     public static var one: Self { .degrees(360) }
-    public static var `default`: GraphicMetadataValue<Self> { .fixed(.zero) }
+    public static var `default`: GraphicMetadataValue<Self> { .zero }
     public static var minimum: GraphicMetadataValue<Self> { .fixed(.degrees(-180)) }
     public static var maximum: GraphicMetadataValue<Self> { .fixed(.degrees(180)) }
     
@@ -107,7 +107,7 @@ extension CGSize: GraphicValue {
     public static var zero: Self { CGSize(width: 0.0, height: 0.0) }
     public static var one: Self { CGSize(width: 1.0, height: 1.0) }
     public static var `default`: GraphicMetadataValue<Self> { .resolution }
-    public static var minimum: GraphicMetadataValue<Self> { .fixed(.zero) }
+    public static var minimum: GraphicMetadataValue<Self> { .zero }
     public static var maximum: GraphicMetadataValue<Self> { .resolution }
     
     public static func lerp(at fraction: CGFloat, from leading: Self, to trailing: Self) -> Self {
@@ -125,9 +125,9 @@ extension CGPoint: GraphicValue {
     
     public static var zero: Self { CGPoint(x: 0.0, y: 0.0) }
     public static var one: Self { CGPoint(x: 1.0, y: 1.0) }
-    public static var `default`: GraphicMetadataValue<Self> { .resolutionCenter }
-    public static var minimum: GraphicMetadataValue<Self> { .resolutionMaximum(fraction: -0.5) }
-    public static var maximum: GraphicMetadataValue<Self> { .resolutionMaximum(fraction: 0.5) }
+    public static var `default`: GraphicMetadataValue<Self> { .resolutionAlignment(.center) }
+    public static var minimum: GraphicMetadataValue<Self> { .zero }
+    public static var maximum: GraphicMetadataValue<Self> { .resolution }
     
     public static func lerp(at fraction: CGFloat, from leading: Self, to trailing: Self) -> Self {
         CGPoint(x: Double.lerp(at: fraction, from: leading.x, to: trailing.x),
@@ -145,7 +145,7 @@ extension CGRect: GraphicValue {
     public static var zero: Self { CGRect(origin: .zero, size: .zero) }
     public static var one: Self { CGRect(origin: .zero, size: .one) }
     public static var `default`: GraphicMetadataValue<Self> { .resolution }
-    public static var minimum: GraphicMetadataValue<Self> { .fixed(.zero) }
+    public static var minimum: GraphicMetadataValue<Self> { .zero }
     public static var maximum: GraphicMetadataValue<Self> { .resolution }
     
     public static func lerp(at fraction: CGFloat, from leading: Self, to trailing: Self) -> Self {
@@ -184,10 +184,24 @@ extension PixelColor: GraphicValue {
 
 extension SIMD3: GraphicValue where Scalar: GraphicValue {
     
-    public static var zero: Self { .init(0 as! Scalar, 0 as! Scalar, 0 as! Scalar) }
-    public static var one: Self { .init(1 as! Scalar, 1 as! Scalar, 1 as! Scalar) }
-    public static var `default`: GraphicMetadataValue<Self> { .resolutionCenter }
-    public static var minimum: GraphicMetadataValue<Self> { .fixed(.zero) }
+    public static var zero: Self {
+        if Scalar.self == Int.self {
+            return SIMD3<Int>(0, 0, 0) as! Self
+        } else if Scalar.self == Double.self {
+            return SIMD3<Double>(0.0, 0.0, 0.0) as! Self
+        }
+        fatalError("Unsupported Scalar")
+    }
+    public static var one: Self {
+        if Scalar.self == Int.self {
+            return SIMD3<Int>(1, 1, 1) as! Self
+        } else if Scalar.self == Double.self {
+            return SIMD3<Double>(1.0, 1.0, 1.0) as! Self
+        }
+        fatalError("Unsupported Scalar")
+    }
+    public static var `default`: GraphicMetadataValue<Self> { .resolutionAlignment(.center) }
+    public static var minimum: GraphicMetadataValue<Self> { .zero }
     public static var maximum: GraphicMetadataValue<Self> { .resolution }
     
     public static func lerp(at fraction: CGFloat, from leading: Self, to trailing: Self) -> Self {

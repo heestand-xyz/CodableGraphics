@@ -4,7 +4,7 @@ import AsyncGraphics
 import PixelColor
 
 @propertyWrapper
-public class GraphicProperty<T: GraphicValue> {
+public class GraphicValueProperty<T: GraphicValue> {
     
     public let key: String
     public let name: String
@@ -22,10 +22,10 @@ public class GraphicProperty<T: GraphicValue> {
     }
 }
 
-extension GraphicProperty {
+extension GraphicValueProperty {
 
-    public func erase() -> AnyGraphicProperty {
-        AnyGraphicProperty(
+    public func erase() -> AnyGraphicValueProperty {
+        AnyGraphicValueProperty(
             type: type,
             key: key,
             name: name,
@@ -34,12 +34,12 @@ extension GraphicProperty {
             minimumValue: wrappedValue.minimumValue,
             maximumValue: wrappedValue.maximumValue
         ) { [weak self] value in
-            self?.wrappedValue.value = value!
+            self?.wrappedValue.value = value
         }
     }
 }
 
-extension GraphicProperty {
+extension GraphicValueProperty {
     
     public var type: GraphicValueType {
         switch T.self {

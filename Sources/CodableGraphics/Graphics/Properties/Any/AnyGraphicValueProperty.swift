@@ -1,9 +1,7 @@
 import Foundation
 import SwiftUI
 
-public class AnyGraphicProperty {
-    
-    static let nullKey: String = "null"
+public class AnyGraphicValueProperty: AnyGraphicProperty {
     
     public let type: GraphicValueType
     
@@ -20,11 +18,11 @@ public class AnyGraphicProperty {
     init<T: GraphicValue>(type: GraphicValueType,
                           key: String,
                           name: String,
-                          value: GraphicMetadataValue<T>?,
-                          defaultValue: GraphicMetadataValue<T>?,
-                          minimumValue: GraphicMetadataValue<T>?,
-                          maximumValue: GraphicMetadataValue<T>?,
-                          update: @escaping (GraphicMetadataValue<T>?) -> ()) {
+                          value: GraphicMetadataValue<T>,
+                          defaultValue: GraphicMetadataValue<T>,
+                          minimumValue: GraphicMetadataValue<T>,
+                          maximumValue: GraphicMetadataValue<T>,
+                          update: @escaping (GraphicMetadataValue<T>) -> ()) {
         
         self.type = type
         
@@ -42,49 +40,42 @@ public class AnyGraphicProperty {
     }
 }
 
-extension AnyGraphicProperty {
+public extension AnyGraphicValueProperty {
     
-    func get<T: GraphicValue>() -> GraphicMetadataValue<T>? {
+    func getValue<T: GraphicValue>() -> GraphicMetadataValue<T> {
         Self.decode(value)
     }
     
-    func getDefault<T: GraphicValue>() -> GraphicMetadataValue<T>? {
+    func getDefaultValue<T: GraphicValue>() -> GraphicMetadataValue<T> {
         Self.decode(defaultValue)
     }
     
-    func getMinium<T: GraphicValue>() -> GraphicMetadataValue<T>? {
+    func getMiniumValue<T: GraphicValue>() -> GraphicMetadataValue<T> {
         Self.decode(minimumValue)
     }
     
-    func getMaximum<T: GraphicValue>() -> GraphicMetadataValue<T>? {
+    func getMaximumValue<T: GraphicValue>() -> GraphicMetadataValue<T> {
         Self.decode(maximumValue)
     }
     
-    func set<T: GraphicValue>(value: GraphicMetadataValue<T>?) {
+    func setValue<T: GraphicValue>(_ value: GraphicMetadataValue<T>) {
         updateValue(Self.encode(value))
     }
 }
 
-extension AnyGraphicProperty {
+extension AnyGraphicValueProperty {
     
-    static func encode<T: GraphicValue>(_ value: GraphicMetadataValue<T>?) -> String {
-        if let value {
-            do {
-                let encoder = JSONEncoder()
-                let data = try encoder.encode(value)
-                return String(data: data, encoding: .utf8)!
-            } catch {
-                fatalError("CodableGraphics - Encode in Property Failed: \(error.localizedDescription)")
-            }
-        } else {
-            return nullKey
+    static func encode<T: GraphicValue>(_ value: GraphicMetadataValue<T>) -> String {
+        do {
+            let encoder = JSONEncoder()
+            let data = try encoder.encode(value)
+            return String(data: data, encoding: .utf8)!
+        } catch {
+            fatalError("CodableGraphics - Encode in Property Failed: \(error.localizedDescription)")
         }
     }
     
-    static func decode<T: GraphicValue>(_ string: String) -> GraphicMetadataValue<T>? {
-        if string == nullKey {
-            return nil
-        }
+    static func decode<T: GraphicValue>(_ string: String) -> GraphicMetadataValue<T> {
         do {
             let decoder = JSONDecoder()
             let data: Data = string.data(using: .utf8)!
