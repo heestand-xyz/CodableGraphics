@@ -5,5 +5,6 @@ import SwiftSyntaxMacros
 struct CodableGraphicsMacros: CompilerPlugin {
     let providingMacros: [Macro.Type] = [
         CodableGraphicMacro.self,
+        CodableEnumsMacro.self,
     ]
 }

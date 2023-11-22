@@ -37,6 +37,12 @@ let package = Package(
                 .product(name: "SwiftSyntaxMacros", package: "swift-syntax"),
                 .product(name: "SwiftCompilerPlugin", package: "swift-syntax"),
             ]),
+        .executableTarget(
+            name: "CodableGraphicsGenerator",
+            dependencies: [
+                "AsyncGraphics",
+                "CodableGraphicsMacros",
+            ]),
         .testTarget(
             name: "CodableGraphicsTests",
             dependencies: [
